@@ -1,13 +1,3 @@
-
-//array of places I would like to visit
-var places=[
-  {place:"Ozran,Goa"},
-  {place:"Arambol,Goa"},
-  {place:"Baga,Goa"},
-  {place:"Vagator,Goa"},
-  {place:"Anjuna,Goa"},
-  {place:"Chapora Fort,Goa"}
-];
 // View Model
 var PlaceViewModel = function() {
   self=this;
@@ -26,25 +16,25 @@ var PlaceViewModel = function() {
     var filteredArray = ko.utils.arrayFilter(self.placeList(), function(item) {   //filtered list when there is some text in search box
       return item.place.toLowerCase().indexOf(filter) > -1;
     });
-    if(filteredArray.length==0)                    //if nothing mathes hide all markers
+    if(filteredArray.length===0)                    //if nothing mathes hide all markers
     {
-      for(var i=0;i<markers.length;i++)
+      for(var p=0;p<markers.length;p++)
       {
-        markers[i].setMap(null);
+        markers[p].setMap(null);
       }
     }
 
-   for(var i=0;i<self.placeList().length;i++)             //display markers for filtered places
+   for(var q=0;q<self.placeList().length;q++)             //display markers for filtered places
     {
       for(var j=0;j<filteredArray.length;j++)
       {
-        if(self.placeList()[i]!=filteredArray[j])
+        if(self.placeList()[q]!=filteredArray[j])
         {
-          markers[i].setMap(null);
+          markers[q].setMap(null);
         }
         else
         {
-            markers[i].setMap(map);
+            markers[q].setMap(map);
             j=filteredArray.length;                        //if place found then skip the remaining loop as it will set the map null again
         }
       }
